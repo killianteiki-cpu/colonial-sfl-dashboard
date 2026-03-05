@@ -47,7 +47,7 @@ function ImmofyDemo() {
       <nav className="demo-nav">
         <div className="demo-nav-brand">
           <div className="demo-nav-logo">
-            <img src="/logo.jpg" alt="Immofy" className="demo-nav-logo-img" />
+            <img src="./logo.jpg" alt="Immofy" className="demo-nav-logo-img" />
           </div>
           <span className="demo-nav-title">Immofy <span className="demo-nav-subtitle">Automation Demo</span></span>
         </div>

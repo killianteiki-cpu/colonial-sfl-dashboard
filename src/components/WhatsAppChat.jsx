@@ -308,7 +308,7 @@ export default function WhatsAppChat({ leadData, onReset }) {
             {/* Toggle Mode Bar */}
             <div className="wa-demo-toggle">
                 <span className="wa-demo-toggle-label">
-                    <img src="/whatsapp.png" alt="WhatsApp" style={{ width: 28, height: 28, objectFit: 'contain', verticalAlign: 'middle', marginRight: 8 }} />
+                    <img src="./whatsapp.png" alt="WhatsApp" style={{ width: 28, height: 28, objectFit: 'contain', verticalAlign: 'middle', marginRight: 8 }} />
                     Select Demo Scenario:
                 </span>
                 <button
@@ -482,13 +482,13 @@ export default function WhatsAppChat({ leadData, onReset }) {
                         <div className="wa-header-back">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
                         </div>
-                        <img src="/logo.jpg" alt="Immofy" className="wa-header-avatar-img" />
+                        <img src="./logo.jpg" alt="Immofy" className="wa-header-avatar-img" />
                         <div className="wa-header-info">
                             <div className="wa-header-name">Immofy</div>
                             <div className="wa-header-status">{isTyping ? 'typing...' : 'online'}</div>
                         </div>
                         <div className="wa-header-actions">
-                            <img src="/whatsapp.png" alt="WhatsApp" style={{ width: 34, height: 34, objectFit: 'contain' }} />
+                            <img src="./whatsapp.png" alt="WhatsApp" style={{ width: 34, height: 34, objectFit: 'contain' }} />
                         </div>
                     </div>
 

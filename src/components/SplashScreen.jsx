@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
 const TEAM = [
-    { name: "Arthur Bertrand", img: "/team/arthur.jpg" },
-    { name: "Albert Crusells", img: "/team/albert.jpg" },
-    { name: "Pau Baella", img: "/team/pau.jpg" },
-    { name: "Josep Guardia", img: "/team/josep.jpg" },
-    { name: "Killian Teiki Besana", img: "/team/killian.jpg" },
+    { name: "Arthur Bertrand", img: "./team/arthur.jpg" },
+    { name: "Albert Crusells", img: "./team/albert.jpg" },
+    { name: "Pau Baella", img: "./team/pau.jpg" },
+    { name: "Josep Guardia", img: "./team/josep.jpg" },
+    { name: "Killian Teiki Besana", img: "./team/killian.jpg" },
 ];
 
 export default function SplashScreen({ onDone }) {

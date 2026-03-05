@@ -28,7 +28,7 @@ export default function LandingPage({ onSubmit }) {
             <nav className="immofy-nav">
                 <div className="immofy-nav-left">
                     <a className="immofy-logo" href="#">
-                        <img src="/logo-horizontal.png" alt="Immofy" className="immofy-logo-img" />
+                        <img src="./logo-horizontal.png" alt="Immofy" className="immofy-logo-img" />
                     </a>
                     <div className="immofy-nav-links">
                         <a href="#">For sale</a>
@@ -53,7 +53,7 @@ export default function LandingPage({ onSubmit }) {
             {/* Hero Section */}
             < div className="immofy-hero" >
                 <div className="immofy-hero-bg">
-                    <img src="/hero.png" alt="Costa Blanca coastline" />
+                    <img src="./hero.png" alt="Costa Blanca coastline" />
                     <div className="immofy-hero-overlay" />
                 </div>
                 <div className="immofy-hero-content">
@@ -121,73 +121,73 @@ export default function LandingPage({ onSubmit }) {
                 <div className="immofy-section-divider" />
 
                 <div className="immofy-properties-grid">
-                  {/* Property 1 */}
-                  <div className="prop-card">
-                    <div className="prop-card-image">
-                      <img src="/prop1.png" alt="Villa in Polop" />
-                      <span className="prop-badge">New</span>
-                      <button className="prop-fav">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                      </button>
+                    {/* Property 1 */}
+                    <div className="prop-card">
+                        <div className="prop-card-image">
+                            <img src="./prop1.png" alt="Villa in Polop" />
+                            <span className="prop-badge">New</span>
+                            <button className="prop-fav">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                            </button>
+                        </div>
+                        <div className="prop-card-body">
+                            <div className="prop-price">€548,700</div>
+                            <div className="prop-location">Polop, Polop Valley, Spain</div>
+                            <div className="prop-tags">
+                                <span className="prop-type-tag">Villa</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 4v16h20V4H2zm0 8h20" /></svg> 2</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="12" width="20" height="8" rx="2" /><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4" /></svg> 3</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" /></svg> 325</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M3 21V3h18v18" /></svg> 112</span>
+                            </div>
+                            <div className="prop-ref">resp1489</div>
+                        </div>
                     </div>
-                    <div className="prop-card-body">
-                      <div className="prop-price">€548,700</div>
-                      <div className="prop-location">Polop, Polop Valley, Spain</div>
-                      <div className="prop-tags">
-                        <span className="prop-type-tag">Villa</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 4v16h20V4H2zm0 8h20"/></svg> 2</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="12" width="20" height="8" rx="2"/><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/></svg> 3</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> 325</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M3 21V3h18v18"/></svg> 112</span>
-                      </div>
-                      <div className="prop-ref">resp1489</div>
-                    </div>
-                  </div>
 
-                  {/* Property 2 */}
-                  <div className="prop-card">
-                    <div className="prop-card-image">
-                      <img src="/prop2.png" alt="Villa in Benidorm" />
-                      <span className="prop-badge">New</span>
-                      <button className="prop-fav">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                      </button>
+                    {/* Property 2 */}
+                    <div className="prop-card">
+                        <div className="prop-card-image">
+                            <img src="./prop2.png" alt="Villa in Benidorm" />
+                            <span className="prop-badge">New</span>
+                            <button className="prop-fav">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                            </button>
+                        </div>
+                        <div className="prop-card-body">
+                            <div className="prop-price">€595,000</div>
+                            <div className="prop-location">Benidorm, Benidorm, Spain</div>
+                            <div className="prop-tags">
+                                <span className="prop-type-tag">Villa</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 4v16h20V4H2zm0 8h20" /></svg> 2</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="12" width="20" height="8" rx="2" /><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4" /></svg> 3</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" /></svg> 500</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M3 21V3h18v18" /></svg> 205</span>
+                            </div>
+                            <div className="prop-ref">ren9600</div>
+                        </div>
                     </div>
-                    <div className="prop-card-body">
-                      <div className="prop-price">€595,000</div>
-                      <div className="prop-location">Benidorm, Benidorm, Spain</div>
-                      <div className="prop-tags">
-                        <span className="prop-type-tag">Villa</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 4v16h20V4H2zm0 8h20"/></svg> 2</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="12" width="20" height="8" rx="2"/><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/></svg> 3</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> 500</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M3 21V3h18v18"/></svg> 205</span>
-                      </div>
-                      <div className="prop-ref">ren9600</div>
-                    </div>
-                  </div>
 
-                  {/* Property 3 */}
-                  <div className="prop-card">
-                    <div className="prop-card-image">
-                      <img src="/prop3.png" alt="Villa in Ibiza" />
-                      <span className="prop-badge">New</span>
-                      <button className="prop-fav">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                      </button>
+                    {/* Property 3 */}
+                    <div className="prop-card">
+                        <div className="prop-card-image">
+                            <img src="./prop3.png" alt="Villa in Ibiza" />
+                            <span className="prop-badge">New</span>
+                            <button className="prop-fav">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                            </button>
+                        </div>
+                        <div className="prop-card-body">
+                            <div className="prop-price">€5,600,000</div>
+                            <div className="prop-location">Can Bessó, Ibiza, Spain</div>
+                            <div className="prop-tags">
+                                <span className="prop-type-tag">Villa</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="12" width="20" height="8" rx="2" /><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4" /></svg> 4</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" /></svg> 2240</span>
+                                <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M3 21V3h18v18" /></svg> 600</span>
+                            </div>
+                            <div className="prop-ref">jf721493</div>
+                        </div>
                     </div>
-                    <div className="prop-card-body">
-                      <div className="prop-price">€5,600,000</div>
-                      <div className="prop-location">Can Bessó, Ibiza, Spain</div>
-                      <div className="prop-tags">
-                        <span className="prop-type-tag">Villa</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="12" width="20" height="8" rx="2"/><path d="M6 12V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/></svg> 4</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> 2240</span>
-                        <span className="prop-detail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M3 21V3h18v18"/></svg> 600</span>
-                      </div>
-                      <div className="prop-ref">jf721493</div>
-                    </div>
-                  </div>
                 </div>
             </div>
 
@@ -209,7 +209,7 @@ export default function LandingPage({ onSubmit }) {
                             <div className="immofy-popup-content">
                                 {/* Left — eBook Cover */}
                                 <div className="immofy-popup-ebook">
-                                    <img src="/ebook.png" alt="Buying Real Estate in Spain - The ultimate checklist 2026" />
+                                    <img src="./ebook.png" alt="Buying Real Estate in Spain - The ultimate checklist 2026" />
                                 </div>
 
                                 {/* Right — Form */}

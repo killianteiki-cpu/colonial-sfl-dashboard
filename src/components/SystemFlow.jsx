@@ -17,7 +17,7 @@ const STEPS = [
         label: 'Logged in HubSpot',
         desc: 'Data sent to CRM',
         icon: (
-            <img src="/hubspot.png" alt="HubSpot" style={{ width: 32, height: 32, objectFit: 'contain' }} />
+            <img src="./hubspot.png" alt="HubSpot" style={{ width: 32, height: 32, objectFit: 'contain' }} />
         ),
     },
     {
@@ -36,7 +36,7 @@ const STEPS = [
         label: 'WhatsApp Sent',
         desc: 'Automated message to the client',
         icon: (
-            <img src="/whatsapp.png" alt="WhatsApp" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+            <img src="./whatsapp.png" alt="WhatsApp" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
         ),
     },
 ]
@@ -170,7 +170,7 @@ export default function SystemFlow({ leadData, onComplete }) {
             {leadData && activeIndex >= 1 && (
                 <div className="flow-crm-card">
                     <div className="flow-crm-header">
-                        <img src="/hubspot.png" alt="HubSpot" className="flow-crm-hubspot-img" />
+                        <img src="./hubspot.png" alt="HubSpot" className="flow-crm-hubspot-img" />
                         <div className="flow-crm-title">HubSpot CRM — New Contact</div>
                     </div>
                     <div className="flow-crm-row">
