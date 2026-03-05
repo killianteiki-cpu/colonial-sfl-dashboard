@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import Tooltip from "./Tooltip";
 
 const C = { teal: "#00b4b4", tealD: "#009999", dark: "#0a1628", card: "#111d32", cardH: "#162240", border: "#1e3050", gold: "#e6a817", red: "#e63946", green: "#2ec4b6", purple: "#7b68ee", white: "#f0f4f8", muted: "#8899aa", light: "#c0cfe0" };
 const YRS = [2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035];
@@ -300,10 +301,12 @@ export default function DCFAnalysis() {
                 style={{ width: "100%", height: 4, appearance: "none", background: `linear-gradient(to right,${C.teal} ${(value - min) / (max - min) * 100}%,${C.border} ${(value - min) / (max - min) * 100}%)`, borderRadius: 2, outline: "none", cursor: "pointer" }} />
         </div>
     );
-    const KPI = ({ label, value, sub, accent, large }) => (
+    const KPI = ({ label, value, sub, accent, large, tooltip }) => (
         <div style={{ background: C.card, borderRadius: 12, padding: large ? "20px 14px" : "14px 12px", textAlign: "center", border: `1px solid ${C.border}` }}>
             <div style={{ fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: 1.5, fontWeight: 600 }}>{label}</div>
-            <div style={{ fontSize: large ? 30 : 22, fontWeight: 800, color: accent || C.teal, marginTop: 4 }}>{value}</div>
+            <div style={{ fontSize: large ? 30 : 22, fontWeight: 800, color: accent || C.teal, marginTop: 4 }}>
+                {tooltip ? <Tooltip text={tooltip}>{value}</Tooltip> : value}
+            </div>
             {sub && <div style={{ fontSize: 10, color: C.muted, marginTop: 2 }}>{sub}</div>}
         </div>
     );
@@ -332,12 +335,12 @@ export default function DCFAnalysis() {
 
                 {/* TOP KPIs */}
                 <div style={{ display: "grid", gridTemplateColumns: mob ? "repeat(2,1fr)" : "repeat(6,1fr)", gap: mob ? 6 : 10, marginBottom: 20 }}>
-                    <KPI label="Equity IRR" value={pct(model.irr * 100)} sub="10-year levered" large />
-                    <KPI label="Starting NAV" value={fmt(model.nav0)} sub="2025" accent={C.muted} large />
-                    <KPI label="Terminal NAV" value={fmt(model.navFinal)} sub="2035" large />
-                    <KPI label="NAV Growth" value={`+${Math.round((model.navFinal / model.nav0 - 1) * 100)}%`} sub="10 years" accent={C.green} large />
-                    <KPI label="Terminal NRI" value={`€${p[10].nri}m`} sub={`from €${p[0].nri}m`} accent={C.gold} large />
-                    <KPI label="LTV Range" value={`${Math.min(...p.map(d => d.ltv)).toFixed(0)}–${Math.max(...p.map(d => d.ltv)).toFixed(0)}%`} sub="Min–Max" accent={p[10].ltv > 35 ? C.red : C.green} large />
+                    <KPI label="Equity IRR" value={pct(model.irr * 100)} sub="10-year levered" large tooltip="<strong>TIR (Tasa Interna de Retorno)</strong><br/><br/>Rentabilidad anualizada para el accionista. <br/><br/><em>Fórmula:</em> TIR de los FCF (Free Cash Flows) anuales, incluyendo la venta final de activos (Terminal NAV)." />
+                    <KPI label="Starting NAV" value={fmt(model.nav0)} sub="2025" accent={C.muted} large tooltip="<strong>NAV (Net Asset Value) Inicial</strong><br/><br/>Valor neto de los activos al comienzo del plan.<br/><br/><em>Fórmula:</em> GAV (Gross Asset Value) - Deuda Neta." />
+                    <KPI label="Terminal NAV" value={fmt(model.navFinal)} sub="2035" large tooltip="<strong>NAV (Net Asset Value) Final</strong><br/><br/>Valor neto estimado de los activos al final del plan en 2035.<br/><br/><em>Fórmula:</em> GAV Final - Deuda Neta Final." />
+                    <KPI label="NAV Growth" value={`+${Math.round((model.navFinal / model.nav0 - 1) * 100)}%`} sub="10 years" accent={C.green} large tooltip="<strong>Crecimiento del NAV</strong><br/><br/>Incremento del valor para el accionista durante los 10 años.<br/><br/><em>Fórmula:</em> (Terminal NAV / Starting NAV) - 1." />
+                    <KPI label="Terminal NRI" value={`€${p[10].nri}m`} sub={`from €${p[0].nri}m`} accent={C.gold} large tooltip="<strong>NRI (Net Rental Income) Final</strong><br/><br/>Beneficio operativo por alquileres estimado para 2035.<br/><br/><em>Fórmula:</em> Rentas Brutas - Gastos no recuperables de los inquilinos." />
+                    <KPI label="LTV Range" value={`${Math.min(...p.map(d => d.ltv)).toFixed(0)}–${Math.max(...p.map(d => d.ltv)).toFixed(0)}%`} sub="Min–Max" accent={p[10].ltv > 35 ? C.red : C.green} large tooltip="<strong>LTV (Loan to Value)</strong><br/><br/>Nivel de apalancamiento o endeudamiento.<br/><br/><em>Fórmula:</em> (Deuda Neta / GAV) * 100. Target ideal: ≤ 40%." />
                 </div>
 
                 {/* TABS */}
@@ -425,15 +428,15 @@ export default function DCFAnalysis() {
                             <tbody>{p.map((d, i) => (
                                 <tr key={d.y} style={{ borderBottom: `1px solid ${C.border}20`, background: i % 2 === 0 ? C.dark : "transparent" }}>
                                     <td style={{ padding: 6, fontWeight: 700, color: C.teal, textAlign: "right" }}>{d.y}</td>
-                                    <td style={{ padding: 6, textAlign: "right", color: C.green, fontWeight: 600 }}>€{d.nri}m</td>
+                                    <td style={{ padding: 6, textAlign: "right", color: C.green, fontWeight: 600 }}><Tooltip text="<strong>NRI (Net Rental Income)</strong><br/>Ingresos netos por alquileres." width={160}>€{d.nri}m</Tooltip></td>
                                     <td style={{ padding: 6, textAlign: "right", color: C.red }}>-€{d.int}m</td>
-                                    <td style={{ padding: 6, textAlign: "right", color: d.cx > 0 ? C.gold : C.muted }}>{d.cx > 0 ? `-€${d.cx}m` : "—"}</td>
+                                    <td style={{ padding: 6, textAlign: "right", color: d.cx > 0 ? C.gold : C.muted }}><Tooltip text="<strong>Capex</strong><br/>Inversión en reformas (Building Update o Full Refurbishment)." width={160}>{d.cx > 0 ? `-€${d.cx}m` : "—"}</Tooltip></td>
                                     <td style={{ padding: 6, textAlign: "right", color: d.proc > 0 ? C.green : C.muted }}>{d.proc > 0 ? `+€${d.proc}m` : "—"}</td>
-                                    <td style={{ padding: 6, textAlign: "right", fontWeight: 700, color: C.white }}>€{d.fcf}m</td>
-                                    <td style={{ padding: 6, textAlign: "right" }}>{fmt(d.gav)}</td>
+                                    <td style={{ padding: 6, textAlign: "right", fontWeight: 700, color: C.white }}><Tooltip text="<strong>FCF (Free Cash Flow)</strong><br/>Flujo de caja libre tras pagar intereses e inversiones." width={160}>€{d.fcf}m</Tooltip></td>
+                                    <td style={{ padding: 6, textAlign: "right" }}><Tooltip text="<strong>GAV (Gross Asset Value)</strong><br/>Valor bruto de los activos inmobiliarios." width={160}>{fmt(d.gav)}</Tooltip></td>
                                     <td style={{ padding: 6, textAlign: "right", color: C.muted }}>{fmt(d.debt)}</td>
-                                    <td style={{ padding: 6, textAlign: "right", fontWeight: 700, color: C.teal }}>{fmt(d.nav)}</td>
-                                    <td style={{ padding: 6, textAlign: "right", color: d.ltv > 35 ? C.gold : C.green, fontWeight: 600 }}>{d.ltv}%</td>
+                                    <td style={{ padding: 6, textAlign: "right", fontWeight: 700, color: C.teal }}><Tooltip text="<strong>NAV (Net Asset Value)</strong><br/>Valor del accionista: GAV - Deuda Neta." width={160}>{fmt(d.nav)}</Tooltip></td>
+                                    <td style={{ padding: 6, textAlign: "right", color: d.ltv > 35 ? C.gold : C.green, fontWeight: 600 }}><Tooltip text="<strong>LTV (Loan to Value)</strong><br/>Porcentaje de deuda frente al valor de los activos." width={160}>{d.ltv}%</Tooltip></td>
                                 </tr>
                             ))}</tbody>
                         </table>
@@ -578,8 +581,8 @@ export default function DCFAnalysis() {
                             </div>
                             <div style={{ marginTop: 12, padding: 10, background: `${C.teal}15`, borderRadius: 8, border: `1px solid ${C.teal}40`, textAlign: "center" }}>
                                 <div style={{ fontSize: 10, color: C.teal, fontWeight: 600, textTransform: "uppercase", letterSpacing: 2 }}>Levered Equity IRR</div>
-                                <div style={{ fontSize: 34, fontWeight: 900, color: C.teal }}>{pct(model.irr * 100)}</div>
-                                <div style={{ fontSize: 10, color: C.muted }}>Equity Multiple: {model.multEq.toFixed(2)}x | NAV: {fmt(model.nav0)} → {fmt(model.navFinal)}</div>
+                                <div style={{ fontSize: 34, fontWeight: 900, color: C.teal }}><Tooltip text="<strong>TIR (Tasa Interna de Retorno)</strong><br/><br/>Mide el crecimiento anual compuesto de la inversión.<br/><br/><em>Fórmula:</em> Tasa que iguala a 0 el Valor Actual Neto (NPV) de los flujos de caja del accionista." width={180}>{pct(model.irr * 100)}</Tooltip></div>
+                                <div style={{ fontSize: 10, color: C.muted }}>Equity Multiple: <Tooltip text="<strong>Equity Multiple</strong><br/><br/>Multiplicador del capital inicial aportado.<br/><br/><em>Fórmula:</em> (Flujos de Caja Recibidos + Valor Final NAV) / Inversión Inicial (Starting NAV)." width={180}>{model.multEq.toFixed(2)}x</Tooltip> | NAV: {fmt(model.nav0)} → {fmt(model.navFinal)}</div>
                             </div>
                         </div>
                     </div>
