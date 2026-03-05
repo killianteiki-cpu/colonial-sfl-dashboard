@@ -80,6 +80,20 @@ const navStart = 2456;
 export default function ColonialPlan() {
     const [tab, setTab] = useState("exec");
     const [yr, setYr] = useState(0);
+    const [isAnimatingTime, setIsAnimatingTime] = useState(false);
+
+    // Timeline Animation Effect
+    useEffect(() => {
+        if (tab === "time") {
+            setIsAnimatingTime(true);
+            const timer = setTimeout(() => {
+                setIsAnimatingTime(false);
+            }, 5000); // 5 seconds animation 
+            return () => clearTimeout(timer);
+        } else {
+            setIsAnimatingTime(false);
+        }
+    }, [tab]);
 
     // Verified debt, interest, and disposal proceeds from PDF
     const debtArr = [1348, 1240, 1240, 1240, 1240, 1240, 1240, 1240, 1240, 1240, 1240];
@@ -138,6 +152,63 @@ export default function ColonialPlan() {
     );
 
     const d = yearly[yr];
+
+    // --- Timeline Animation Component ---
+    const TimelineAnimation = () => {
+        const h = 280;
+        const w = 720;
+        const maxNRI = Math.max(...yearly.map(y => y.nri)) * 1.1; // adding some padding
+        const points = yearly.map((data, index) => {
+            const x = (index / (yearly.length - 1)) * w;
+            const y = h - (data.nri / maxNRI) * h;
+            return { x, y, val: data.nri, yr: data.y };
+        });
+
+        // Create path string for the line
+        const linePath = points.map((p, i) => (i === 0 ? `M ${p.x} ${p.y}` : `L ${p.x} ${p.y}`)).join(" ");
+        // Create path string for the area under the line
+        const areaPath = `${linePath} L ${w} ${h} L 0 ${h} Z`;
+
+        return (
+            <div className="timeline-animation-container">
+                <div className="timeline-animation-title">
+                    <h2>Evolución NRI Portfolio (10 Años)</h2>
+                    <p>Building the Future Value</p>
+                </div>
+                <svg className="svg-chart" viewBox={`-40 -40 ${w + 80} ${h + 100}`} preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="tealGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#00b4b4" stopOpacity="0.6" />
+                            <stop offset="100%" stopColor="#00b4b4" stopOpacity="0" />
+                        </linearGradient>
+                    </defs>
+
+                    {/* Background Grid Lines */}
+                    {[0, 0.25, 0.5, 0.75, 1].map((ratio, i) => (
+                        <line key={i} x1={0} y1={h * ratio} x2={w} y2={h * ratio} className="animated-grid" style={{ animationDelay: `${0.2 * i}s` }} />
+                    ))}
+
+                    <path d={areaPath} className="animated-area" />
+                    <path d={linePath} className="animated-line" />
+
+                    {points.map((p, i) => {
+                        const delay = 0.5 + (i * 0.25); // staggered 
+                        return (
+                            <g key={i}>
+                                <circle cx={p.x} cy={p.y} r={6} className="animated-point" style={{ animationDelay: `${delay}s` }} />
+                                <text x={p.x} y={h + 20} className="point-label-year" style={{ animationDelay: `${delay + 0.1}s` }}>
+                                    '{p.yr.toString().slice(-2)}
+                                </text>
+                                <text x={p.x} y={p.y - 15} className="point-label-val" style={{ animationDelay: `${delay + 0.1}s` }}>
+                                    €{Math.round(p.val)}
+                                </text>
+                            </g>
+                        );
+                    })}
+                </svg>
+            </div>
+        );
+    };
 
     // Mobile detection
     const [mob, setMob] = useState(typeof window !== 'undefined' && window.innerWidth < 768);
@@ -229,7 +300,8 @@ export default function ColonialPlan() {
                 </div>)}
 
                 {/* TIMELINE */}
-                {tab === "time" && (<div>
+                {tab === "time" && isAnimatingTime && <TimelineAnimation />}
+                {tab === "time" && !isAnimatingTime && (<div>
                     <div style={{ display: "flex", gap: 3, marginBottom: 16, justifyContent: "center", background: C.card, borderRadius: 10, padding: 6, border: `1px solid ${C.border}`, overflowX: mob ? "auto" : "visible", WebkitOverflowScrolling: "touch" }}>
                         {YRS.map((y, i) => (
                             <button key={y} onClick={() => setYr(i)} style={{ flex: mob ? "none" : 1, minWidth: mob ? 44 : "auto", padding: mob ? "8px 2px" : "10px 4px", borderRadius: 7, border: yr === i ? `2px solid ${C.teal}` : "2px solid transparent", background: yr === i ? C.cardH : "transparent", color: yr === i ? C.teal : C.muted, cursor: "pointer", fontSize: mob ? 11 : 13, fontWeight: yr === i ? 700 : 400, transition: "all 0.2s", flexShrink: 0 }}>

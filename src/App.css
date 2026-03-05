@@ -2066,3 +2066,139 @@
     transform: translate(-50%, 0) scale(1);
   }
 }
+
+/* Timeline SVG Animation Styles */
+.timeline-animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 480px;
+  background: #111d32;
+  border-radius: 12px;
+  border: 1px solid #1e3050;
+  position: relative;
+  overflow: hidden;
+  animation: fadeOutContainer 0.8s ease-in-out 4.2s forwards;
+}
+
+.timeline-animation-title {
+  position: absolute;
+  top: 30px;
+  text-align: center;
+  z-index: 10;
+  animation: fadeInTitle 0.6s ease-out forwards;
+}
+
+.timeline-animation-title h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #00b4b4;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.timeline-animation-title p {
+  font-size: 13px;
+  color: #c0cfe0;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.svg-chart {
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  padding: 80px 40px 60px;
+  box-sizing: border-box;
+}
+
+.animated-line {
+  fill: none;
+  stroke: #00b4b4;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawLine 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s;
+}
+
+.animated-area {
+  fill: url(#tealGradient);
+  opacity: 0;
+  animation: fadeInArea 2s ease-in-out forwards 1.2s;
+}
+
+.animated-point {
+  fill: #111d32;
+  stroke: #00b4b4;
+  stroke-width: 3;
+  opacity: 0;
+  animation: scalePoint 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animated-grid {
+  stroke: #1e3050;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.point-label-year {
+  fill: #8899aa;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-anchor: middle;
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.point-label-val {
+  fill: #2ec4b6;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  text-anchor: middle;
+  opacity: 0;
+  animation: slideUpFade 0.4s ease-out forwards;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeInArea {
+  to {
+    opacity: 0.8;
+  }
+}
+
+@keyframes scalePoint {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeInTitle {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOutContainer {
+  to { opacity: 0; visibility: hidden; }
+}
